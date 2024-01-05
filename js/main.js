@@ -12,7 +12,24 @@ let dateOfDay = dateNow.getDate()
 let printDay = Days[day]
 //**print name of month by using array of --months-- and knowing the day by using getMonth()**
 let prinMonth = months[month]
+//**showing weather info for your location if you click on location input**
+const yourLocation = document.getElementById("locate");
+yourLocation.addEventListener('click', function(){
+    
+        if (navigator.geolocation) {
+          navigator.geolocation.watchPosition(getPosition);
+        }
+      
+})
 
+function getPosition(position) {
+    let lat = position.coords.latitude
+    let lon = position.coords.longitude
+    let changeLat = lat.toFixed(2)
+    let changeLon = lon.toFixed(2)
+    let collect = `${changeLat},${changeLon}`
+    getAPI(collect)
+}
 //**knowing weather's data by using value of input search**
 let searchInput = document.getElementById("search")
 searchInput.addEventListener("change", function(){
