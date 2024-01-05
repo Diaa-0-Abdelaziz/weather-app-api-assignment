@@ -114,15 +114,61 @@ function clearInput(){
 }
 
 
+//*********open message form********** 
+document.getElementById("message-btn").addEventListener('click', ()=>{
+    document.getElementById("message-form").style.display = "block"
+})
+//*********close message form********** 
+document.getElementById("close-form").addEventListener('click', ()=>{
+    document.getElementById("message-form").style.display = "none"
+})
+//****form to send your message******* 
+
+let form = document.getElementById("form")
+let userName = document.getElementById("username")
+let userEmail = document.getElementById("userEmail")
+let userMessage = document.getElementById("message-content")
 
 
 
+form.addEventListener("submit", (e) => {
+    e.preventDefault()
+    if(userName.value != "" && userEmail.value != "" && userMessage.value != ""){
+    const emailMessage = getEmailMessage({
+        fullName: userName.value,
+        emailAddress: userEmail.value,
+        message: userMessage.value,
+    })
 
+    fetch("https://sendmail-api-docs.vercel.app/api/send", {
+        method: "POST",
+        body: JSON.stringify({
+            to: "diaamohamedabelaziz@gmail.com", 
+            subject: "Message From Contact Form",
+            message: emailMessage,
+        })
+    })
+        .then(res => res.json())
+        .then(() => {
+            userName.value = ""
+            userEmail.value = ""
+            userMessage.value = ""
+        })
+    } else{
+        alert("Please fill out the form completely")
+    }
+})
 
-
-
-
-
+const getEmailMessage = ({ fullName, emailAddress, message } = {}) => {
+    return `
+        <p>You have received a new message from your contact form website:</p>
+        <div style="background-color: #101010; color: #fbfbfb; padding: 12px">
+            <p style="margin: 0;">fullName: ${fullName}</p>
+            <p style="margin: 12px 0;">emailAddress: ${emailAddress}</p>
+            <p style="margin: 0;">message: ${message}</p>
+        </div>
+    `
+}
 
 
 

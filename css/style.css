@@ -15,6 +15,16 @@ body
 {
     color: #b9b9b9;
 }
+#message-btn
+{
+    cursor: pointer;
+    transition: .3s;
+    color: #0d6efd;
+}
+#message-btn:hover
+{
+    color: #b9b9b9;
+}
 #weatherData
 {
     display: flex;
@@ -59,4 +69,19 @@ tbody img
 {
     width: 35px;
     
+}
+#message-form
+{
+  background-color:#00000096;
+  display: none;
+}
+#close-form
+{
+    cursor: pointer;
+    transition: .3s;
+    color: #0d6efd;
+}
+#close-form:hover
+{
+    color: #eeeff0; 
 }
