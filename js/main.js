@@ -12,7 +12,7 @@ let dateOfDay = dateNow.getDate()
 let printDay = Days[day]
 //**print name of month by using array of --months-- and knowing the day by using getMonth()**
 let prinMonth = months[month]
-//**showing weather info for your location if you click on location input**
+//**showing weather info for your location if you click on location icon**
 const yourLocation = document.getElementById("locate");
 yourLocation.addEventListener('click', function(){
     
